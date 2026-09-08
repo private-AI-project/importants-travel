@@ -1,0 +1,23 @@
+<!-- TODO: 네이버 서치어드바이저에서 받은 코드를 넣는다
+     <meta name="naver-site-verification" content="..." /> -->
+<!-- TODO: 빙 웹마스터에서 받은 코드를 넣는다
+     <meta name="msvalidate.01" content="..." /> -->
+<script>
+// 내 방문을 통계에서 뺀다.
+//   끄기: 주소 뒤에 ?noga=1 을 붙여 한 번 접속
+//   켜기: ?noga=0
+// 기기별로 한 번만 하면 브라우저에 남는다. IP가 바뀌어도 유지된다.
+// GA4 의 내부 트래픽 제외는 IP 기반이라 모바일이나 외부에서 접속하면 그대로 잡힌다.
+(function () {
+  try {
+    var q = location.search;
+    if (q.indexOf("noga=1") !== -1) localStorage.setItem("ga-opt-out", "1");
+    if (q.indexOf("noga=0") !== -1) localStorage.removeItem("ga-opt-out");
+    if (localStorage.getItem("ga-opt-out") === "1") {
+      window["ga-disable-G-XXXXXXXXXX"] = true;
+    }
+  } catch (e) {}
+})();
+</script>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8673949681156413" crossorigin="anonymous"></script>

@@ -1,0 +1,62 @@
+{{/* PaperMod 원본에 링크 복사 버튼을 덧붙인다. single.html 을 통째로 덮어쓰면
+     테마가 올라갈 때마다 맞춰야 하는데, 이 파샬만 바꾸면 그럴 일이 없다.
+     제목 바로 아래 날짜·읽는 시간 줄의 오른쪽 끝에 붙는다. */}}
+{{- $scratch := newScratch }}
+
+{{- if not .Date.IsZero -}}
+    {{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s</span>" (.Date) (.Date | time.Format (default ":date_long" site.Params.DateFormat)))) }}
+{{- end }}
+
+{{- if (.Param "ShowReadingTime") -}}
+    {{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "read_time" .ReadingTime | default (printf "%d min" .ReadingTime)))) }}
+{{- end }}
+
+{{- if (.Param "ShowWordCount") -}}
+    {{- $scratch.Add "meta" (slice (printf "<span>%s</span>" (i18n "words" .WordCount | default (printf "%d words" .WordCount)))) }}
+{{- end }}
+
+{{- if not (.Param "hideAuthor") -}}
+    {{- with (partial "author.html" .) }}
+        {{- $scratch.Add "meta" (slice (printf "<span>%s</span>" .)) }}
+    {{- end }}
+{{- end }}
+
+<span class="meta-line">
+  <span class="meta-text">
+    {{- with ($scratch.Get "meta") }}{{- delimit . "&nbsp;·&nbsp;" | safeHTML -}}{{- end -}}
+  </span>
+  {{- if eq .Permalink page.Permalink }}
+  <button type="button" class="copy-btn top" data-url="{{ .Permalink }}" aria-label="링크 복사">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+    </svg>
+    <span class="copy-label">링크 복사</span>
+  </button>
+  {{- end }}
+</span>
+
+{{- if eq .Permalink page.Permalink }}
+<style>
+.meta-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.meta-text{flex:1;min-width:0}
+.copy-btn{
+  display:inline-flex;align-items:center;gap:6px;flex-shrink:0;
+  padding:6px 11px;min-height:32px;
+  font:inherit;font-size:13px;font-weight:600;
+  color:var(--secondary);background:transparent;
+  border:1px solid var(--border);border-radius:7px;cursor:pointer;
+  transition:color .2s,border-color .2s;
+}
+.copy-btn:hover{color:var(--primary);border-color:var(--secondary)}
+.copy-btn.done{color:var(--primary);border-color:var(--primary)}
+.copy-btn svg{flex-shrink:0}
+/* 좁은 화면에서는 글자를 빼고 아이콘만. 긴 한글 제목 아래에서 줄이 밀린다. */
+@media (max-width:480px){
+  .copy-btn{padding:6px 9px}
+  .copy-btn .copy-label{display:none}
+  .copy-btn.done .copy-label{display:inline}
+}
+</style>
+{{- end }}

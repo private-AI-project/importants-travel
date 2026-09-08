@@ -1,0 +1,500 @@
+:root {
+    --theme: #fbf5f7;
+    --entry: #ffffff;
+    --primary: #1a1c1e;
+    --secondary: #5a5e66;
+    --tertiary: #f7eaee;
+    --content: #2a2d31;
+    --border: #eddde3;
+    --radius: 14px;
+    --accent: #e07b39;
+    --accent-soft: rgba(224, 123, 57, 0.10);
+}
+
+.dark {
+    --theme: #16181c;
+    --entry: #1f2228;
+    --primary: #e8eaed;
+    --secondary: #9aa0a8;
+    --tertiary: #2a2e35;
+    --content: #d5d9de;
+    --border: #2c3038;
+    --accent: #f0a06a;
+    --accent-soft: rgba(240, 160, 106, 0.12);
+}
+
+body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+        "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+    letter-spacing: -0.01em;
+}
+
+::selection {
+    background: var(--accent-soft);
+}
+
+/* ---------- header ---------- */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background: color-mix(in srgb, var(--theme) 82%, transparent);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo a {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+#menu a {
+    font-size: 15px;
+    color: var(--secondary);
+}
+
+#menu a:hover,
+#menu .active {
+    color: var(--accent);
+}
+
+/* ---------- home intro ---------- */
+
+.home-info {
+    background:
+        linear-gradient(135deg, var(--accent-soft), transparent 55%),
+        var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px !important;
+}
+
+.home-info .entry-header h1 {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.home-info .entry-content {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-top: 12px;
+    color: var(--secondary);
+}
+
+/* ---------- post list cards ---------- */
+
+.post-entry {
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.post-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.post-entry:active {
+    transform: translateY(0);
+}
+
+.entry-header h2 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.45;
+}
+
+.entry-content {
+    color: var(--secondary);
+    line-height: 1.7;
+    margin: 10px 0;
+}
+
+.entry-footer {
+    font-size: 13px;
+    color: var(--secondary);
+    opacity: 0.85;
+}
+
+/* ---------- single post ---------- */
+
+.post-title {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.35;
+}
+
+.post-meta {
+    color: var(--secondary);
+}
+
+.post-content {
+    font-size: 17px;
+    line-height: 1.85;
+}
+
+.post-content h2 {
+    position: relative;
+    margin-top: 44px;
+    padding-left: 14px;
+    letter-spacing: -0.02em;
+}
+
+.post-content h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 4px;
+    border-radius: 2px;
+    background: var(--accent);
+}
+
+.post-content h3 {
+    margin-top: 32px;
+    letter-spacing: -0.02em;
+}
+
+.post-content a {
+    color: var(--accent);
+    box-shadow: none;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s ease;
+}
+
+.post-content a:hover {
+    text-decoration-color: var(--accent);
+}
+
+.post-content blockquote {
+    border-inline-start: 3px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-style: normal;
+}
+
+.post-content table th {
+    background: var(--tertiary);
+}
+
+.toc {
+    border: 1px solid var(--border);
+    background: var(--entry);
+    border-radius: var(--radius);
+}
+
+/* ---------- tags ---------- */
+
+ul.post-tags li a,
+.terms-tags a {
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: none;
+    font-weight: 600;
+}
+
+ul.post-tags li a:hover,
+.terms-tags a:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* ---------- misc ---------- */
+
+.paginav {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.top-link {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.footer {
+    color: var(--secondary);
+    font-size: 13px;
+}
+
+/* Calculator tool */
+.calc-form {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin: 28px 0;
+}
+
+.calc-field { margin-bottom: 28px; }
+
+.calc-field:last-of-type { margin-bottom: 32px; }
+
+.calc-field label {
+    display: block;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.calc-field label span { font-weight: 400; color: var(--secondary); }
+
+.calc-field select,
+.calc-field input {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--primary);
+    background: var(--theme);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.calc-field select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 44px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23888' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px;
+}
+
+.calc-field select:focus,
+.calc-field input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.calc-hint {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: var(--secondary);
+    line-height: 1.5;
+}
+
+.calc-submit {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.calc-submit:hover { opacity: 0.9; }
+
+.calc-result {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 16px;
+    padding: 26px 24px;
+    margin: 20px 0 28px;
+    text-align: center;
+}
+
+.calc-label { margin: 0 0 6px; font-size: 14px; color: var(--secondary); }
+
+.calc-amount {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.3;
+}
+
+.calc-amount.none { font-size: 20px; color: var(--primary); }
+
+.calc-sub { margin: 10px 0 0; font-size: 15px; }
+
+.calc-reason { margin: 10px 0 0; font-size: 14px; color: var(--secondary); }
+
+.calc-notes {
+    margin: 16px auto 0;
+    padding: 0;
+    max-width: 460px;
+    list-style: none;
+    text-align: left;
+    font-size: 14px;
+    color: var(--secondary);
+    line-height: 1.7;
+}
+
+.calc-notes li::before { content: "· "; }
+
+.calc-dday {
+    margin: 16px 0 0;
+    font-size: 15px;
+}
+
+.calc-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.calc-btn {
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 10px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.calc-btn.primary { background: var(--accent); color: #fff; }
+
+.calc-disclaimer {
+    margin: 18px 0 0;
+    font-size: 13px;
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+/* Tools section */
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin: 24px 0;
+}
+
+.tool-card {
+    display: block;
+    padding: 20px 22px;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.tool-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.tool-name {
+    display: block;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--primary);
+    line-height: 1.4;
+}
+
+.tool-desc {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+/* Share buttons */
+.calc-share {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.calc-share-label {
+    display: block;
+    font-size: 13px;
+    color: var(--secondary);
+    margin-bottom: 12px;
+}
+
+.calc-share-btns {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.share-btn {
+    padding: 11px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--entry);
+    color: var(--primary);
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+}
+
+.share-btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+
+.share-btn.kakao { background: #FEE500; color: #191600; border-color: #FEE500; }
+.share-btn.x { background: #111; color: #fff; border-color: #111; }
+
+/* Tables */
+:root {
+    --table-border: #e3d0d7;
+    --table-head-bg: #faf0f3;
+    --table-row-alt: #fdf7f9;
+}
+:root[data-theme=dark] {
+    --table-border: #46404a;
+    --table-head-bg: #2f2a2e;
+    --table-row-alt: #262227;
+}
+
+.post-content table {
+    display: table;
+    width: 100%;
+    margin: 24px 0;
+    border-collapse: collapse;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.post-content table th,
+.post-content table td {
+    padding: 11px 14px;
+    border: 1px solid var(--table-border);
+    text-align: left;
+    vertical-align: top;
+    word-break: break-word;
+}
+
+.post-content table th {
+    background: var(--table-head-bg);
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.post-content table tbody tr:nth-child(even) td {
+    background: var(--table-row-alt);
+}
+
+@media (max-width: 640px) {
+    .post-content table { font-size: 13.5px; }
+    .post-content table th,
+    .post-content table td { padding: 8px 9px; }
+}

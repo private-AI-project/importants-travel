@@ -1,0 +1,175 @@
+/* 느긋하게 — 티스토리 스킨
+ *
+ * 독자가 은퇴를 앞둔 50대다. 일반 블로그 기본값(15~16px)으로는 읽기 힘들다.
+ * 본문 18px, 행간 1.85, 대비를 최대로 잡았다. 이게 이 스킨의 유일한 원칙이고
+ * 나머지는 전부 여기에 맞춘 것이다.
+ */
+
+:root{
+  --bg:#ffffff;
+  --ink:#1a1a1a;          /* 흰 배경에 순검정에 가깝게. 회색 글자는 이 나이대에 안 읽힌다 */
+  --dim:#5a5a5a;          /* 보조 텍스트도 일반 블로그보다 진하게 */
+  --line:#e3e3e3;
+  --accent:#1f6f52;       /* 차분한 초록. 파랑은 링크와 헷갈린다 */
+  --accent-soft:#eef5f2;
+  --link:#1558b0;
+  --max:720px;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#15171a; --ink:#eceff2; --dim:#a8b0b8; --line:#2b3036;
+    --accent:#5cbf98; --accent-soft:#1b2b25; --link:#7fb2f0;
+  }
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Pretendard Variable",-apple-system,"Apple SD Gothic Neo","맑은 고딕",sans-serif;
+  font-size:18px; line-height:1.85; word-break:keep-all;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+
+.inner{max-width:var(--max);margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:8px;top:8px;background:var(--accent);color:#fff;padding:10px 14px;z-index:99}
+
+/* ── 헤더 ─────────────────────────────── */
+.top{border-bottom:1px solid var(--line);background:var(--bg)}
+.top .inner{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;padding-top:18px;padding-bottom:18px}
+.brand{font-size:21px;font-weight:800;letter-spacing:-.02em}
+.nav{display:flex;gap:18px;flex-wrap:wrap}
+.nav a{font-size:16px;color:var(--dim)}
+.nav a:hover{color:var(--ink)}
+/* 티스토리가 카테고리를 ul 로 뱉는다. 인라인으로 편다. */
+.nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.nav li a{font-size:16px}
+
+/* ── 목록 ─────────────────────────────── */
+.card{border-bottom:1px solid var(--line);padding:30px 0}
+.card h2{font-size:23px;line-height:1.45;margin:0;letter-spacing:-.02em}
+.card a:hover h2{color:var(--accent)}
+.card .summary{margin:12px 0 0;color:var(--dim);font-size:17px;line-height:1.75}
+.card .meta{margin:12px 0 0;color:var(--dim);font-size:15px}
+
+/* ── 글 ───────────────────────────────── */
+.post{padding:40px 0 0}
+.post-head{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:34px}
+.cat{margin:0 0 12px;font-size:15px;font-weight:700;color:var(--accent)}
+.post-head h1{font-size:31px;line-height:1.42;margin:0;letter-spacing:-.025em}
+.post-head .meta{margin:16px 0 0;color:var(--dim);font-size:16px}
+
+.copy-link{
+  margin-top:18px;padding:10px 18px;min-height:44px;   /* 44px: 손가락으로 누를 수 있는 최소 */
+  font:inherit;font-size:16px;font-weight:600;
+  color:var(--dim);background:transparent;
+  border:1px solid var(--line);border-radius:8px;cursor:pointer;
+  transition:color .2s,border-color .2s;
+}
+.copy-link:hover{color:var(--ink);border-color:var(--dim)}
+.copy-link.done{color:var(--accent);border-color:var(--accent)}
+
+.post-body{font-size:18px;line-height:1.9}
+.post-body p{margin:0 0 26px}
+.post-body h2{font-size:25px;line-height:1.45;margin:52px 0 18px;letter-spacing:-.02em}
+.post-body h3{font-size:21px;line-height:1.5;margin:42px 0 14px}
+.post-body h4{font-size:19px;margin:32px 0 12px}
+.post-body a{color:var(--link);text-decoration:underline;text-underline-offset:3px}
+.post-body strong{font-weight:700}
+.post-body ul,.post-body ol{margin:0 0 26px;padding-left:26px}
+.post-body li{margin-bottom:10px}
+.post-body img{max-width:100%;height:auto;border-radius:10px;margin:8px 0}
+.post-body hr{border:0;border-top:1px solid var(--line);margin:44px 0}
+.post-body blockquote{
+  margin:0 0 26px;padding:4px 0 4px 18px;
+  border-left:3px solid var(--accent);color:var(--dim);
+}
+
+/* 표. 이 블로그는 출생연도별 표를 자주 쓴다. 폰에서 안 깨지는 게 중요하다. */
+.post-body table{border-collapse:collapse;width:100%;margin:0 0 26px;font-size:17px}
+.post-body th,.post-body td{border:1px solid var(--line);padding:12px 14px;text-align:left}
+.post-body th{background:var(--accent-soft);font-weight:700}
+
+.tags{margin:40px 0 0;display:flex;gap:9px;flex-wrap:wrap}
+.tags a{
+  font-size:15px;color:var(--dim);
+  border:1px solid var(--line);border-radius:99px;padding:7px 14px;
+}
+.tags a:hover{color:var(--accent);border-color:var(--accent)}
+
+.notice{
+  margin:40px 0 0;padding:18px 20px;
+  background:var(--accent-soft);border-radius:10px;
+  font-size:15.5px;line-height:1.75;color:var(--dim);
+}
+
+/* ── 관련 글 ──────────────────────────── */
+.related{margin-top:52px;padding-top:30px;border-top:1px solid var(--line)}
+.related h3{font-size:19px;margin:0 0 16px}
+.related a{display:block;padding:13px 0;font-size:17px;border-bottom:1px solid var(--line)}
+.related a:hover{color:var(--accent)}
+
+/* ── 댓글 ─────────────────────────────── */
+.comments{margin-top:56px;padding-top:30px;border-top:1px solid var(--line)}
+.comments h3{font-size:19px;margin:0 0 20px}
+.comments h3 span{color:var(--accent)}
+.cmt{padding:18px 0;border-bottom:1px solid var(--line)}
+.cmt-who{margin:0 0 8px;font-size:16px;font-weight:700}
+.cmt-who span{font-weight:400;color:var(--dim);font-size:14px;margin-left:8px}
+.cmt-body{margin:0;font-size:17px;line-height:1.75}
+
+.cmt-form{margin-top:26px}
+.cmt-me{margin:0 0 12px;font-size:16px;font-weight:600}
+.guest-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
+.cmt-form input,.cmt-form textarea{
+  width:100%;padding:12px 14px;font:inherit;font-size:16px;
+  color:var(--ink);background:var(--bg);
+  border:1px solid var(--line);border-radius:8px;
+}
+.cmt-form textarea{resize:vertical;line-height:1.7}
+.cmt-send{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.secret{font-size:15px;color:var(--dim);display:flex;align-items:center;gap:7px}
+.cmt-send button{
+  padding:12px 26px;min-height:44px;font:inherit;font-size:16px;font-weight:700;
+  color:#fff;background:var(--accent);border:0;border-radius:8px;cursor:pointer;
+}
+
+/* ── 페이지 이동 ──────────────────────── */
+.paging{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:48px 0}
+.paging a{
+  min-width:44px;min-height:44px;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:16px;color:var(--dim);
+  border:1px solid var(--line);border-radius:8px;
+}
+.paging a:hover{color:var(--ink);border-color:var(--dim)}
+.paging a.selected{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+
+/* ── 푸터 ─────────────────────────────── */
+.foot{margin-top:72px;padding:34px 0 56px;border-top:1px solid var(--line)}
+.foot-title{margin:0;font-size:17px;font-weight:800}
+.foot-desc{margin:8px 0 0;font-size:15.5px;color:var(--dim);line-height:1.75}
+.foot-count{margin:16px 0 0;font-size:14px;color:var(--dim)}
+
+/* ── 좁은 화면 ────────────────────────── */
+@media (max-width:600px){
+  body{font-size:17px}
+  .inner{padding:0 16px}
+  .post-head h1{font-size:26px}
+  .post-body{font-size:17px}
+  .post-body h2{font-size:22px;margin:44px 0 16px}
+  .post-body h3{font-size:19px}
+  .card h2{font-size:21px}
+  /* 표가 넘칠 때 가로로 밀어 볼 수 있게 한다. 잘라내면 값을 못 본다. */
+  .post-body table{display:block;overflow-x:auto;white-space:nowrap}
+}
+
+@media print{
+  .top,.nav,.copy-link,.comments,.paging,.foot,.related{display:none}
+  body{font-size:12pt;color:#000}
+  .post-body a{color:#000;text-decoration:none}
+}

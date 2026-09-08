@@ -1,0 +1,59 @@
+{{- /* 본문 아래 '자주 묻는 질문'. front matter 의 faq 항목에서 만든다.
+
+       화면에 보이는 문답과 FAQPage 스키마를 같이 낸다. 스키마만 넣고 화면에
+       없으면 검색엔진이 어뷰징으로 본다. 둘이 같은 원본에서 나오게 묶어 둔다.
+
+       front matter 예:
+         faq:
+           - q: 누가 신청할 수 있나요?
+             a: 공공기관 의뢰, 의료기관 진단, 건강검진 결과 중 하나에 해당하면 됩니다.
+
+       AI 검색은 질문 단위로 답을 뽑아 간다. 본문이 아무리 정확해도
+       문답 형태가 없으면 통째로 읽고 요약해야 해서 인용될 확률이 떨어진다. */ -}}
+
+{{- with .Params.faq }}
+<section class="post-faq" aria-labelledby="faq-heading">
+  <h2 id="faq-heading">자주 묻는 질문</h2>
+  {{- range . }}
+  <details class="faq-item">
+    <summary>{{ .q }}</summary>
+    <div class="faq-a">{{ .a | markdownify }}</div>
+  </details>
+  {{- end }}
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{- range $i, $e := . }}{{ if $i }},{{ end }}
+    {
+      "@type": "Question",
+      "name": {{ $e.q }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ $e.a | markdownify | plainify }}
+      }
+    }
+    {{- end }}
+  ]
+}
+</script>
+
+<style>
+.post-faq{margin:44px 0 8px;padding-top:28px;border-top:1px solid var(--border)}
+.post-faq h2{margin:0 0 14px;font-size:20px}
+.faq-item{border:1px solid var(--border);border-radius:9px;margin-bottom:8px;background:var(--code-bg)}
+.faq-item summary{
+  padding:13px 16px;cursor:pointer;font-weight:600;line-height:1.5;
+  list-style:none;display:flex;gap:10px;align-items:flex-start;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::before{content:"Q";flex-shrink:0;color:var(--secondary);font-weight:700}
+.faq-item[open] summary{border-bottom:1px solid var(--border)}
+.faq-a{padding:13px 16px 15px;line-height:1.7}
+.faq-a>:first-child{margin-top:0}
+.faq-a>:last-child{margin-bottom:0}
+</style>
+{{- end }}

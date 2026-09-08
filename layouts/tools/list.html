@@ -1,0 +1,15 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}<div class="post-description">{{ .Description }}</div>{{ end }}
+</header>
+<div class="post-content">{{ .Content }}</div>
+<div class="tool-grid">
+  {{ range .Pages }}
+  <a class="tool-card" href="{{ .Permalink }}">
+    <span class="tool-name">{{ .Title }}</span>
+    <span class="tool-desc">{{ .Description }}</span>
+  </a>
+  {{ end }}
+</div>
+{{ end }}

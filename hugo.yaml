@@ -1,0 +1,102 @@
+baseURL: https://travel.importants-studio.com/
+locale: ko-kr
+defaultContentLanguage: ko
+title: 여행의밑줄
+theme: PaperMod
+
+enableRobotsTXT: true
+enableGitInfo: true
+
+services:
+  googleAnalytics:
+    ID: G-XXXXXXXXXX   # TODO: GA4 속성을 새로 만들고 넣는다
+
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+pagination:
+  pagerSize: 10
+
+minify:
+  disableXML: true
+  minifyOutput: true
+  tdewolff:
+    html:
+      # 속성값 따옴표를 벗기면 name=msvalidate.01 처럼 점이 든 값을
+      # 빙 소유확인 파서가 못 읽는다. 따옴표를 남긴다.
+      keepQuotes: true
+
+outputFormats:
+  LLMS:
+    mediaType: text/plain
+    baseName: llms
+    isPlainText: true
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+    - LLMS
+
+params:
+  env: production
+  author: Importants Studio
+  title: 여행의밑줄
+  description: "떠나기 전 챙길 절차와 돈. 여권, 환전, 로밍, 보험, 면세."
+  keywords: [국민연금, 퇴직연금, 연금저축, 주택연금, 건강보험료, 노후준비, 중장년재취업, 기초연금]
+  defaultTheme: auto
+  assets:
+    favicon: /favicon.svg
+    apple_touch_icon: /favicon.svg
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: false
+  ShowToc: true
+  TocOpen: false
+  ShowShareButtons: true
+  disableSpecial1stPost: true
+  hideSummary: false
+
+  homeInfoParams:
+    Title: 여행의밑줄
+    Content: 은퇴가 다가오면 모르는 것이 한꺼번에 몰려옵니다. 연금은 언제부터 나오는지, 건강보험료는 어떻게 바뀌는지, 퇴직금은 어디에 두는지. 하나씩 공식 자료를 찾아 정리합니다.
+
+menu:
+  main:
+    - identifier: posts
+      name: 전체 글
+      url: /posts/
+      weight: 10
+    - identifier: tools
+      name: 도구
+      url: /tools/
+      weight: 15
+    - identifier: tags
+      name: 태그
+      url: /tags/
+      weight: 20
+    - identifier: search
+      name: 검색
+      url: /search/
+      weight: 30
+    - identifier: about
+      name: 소개
+      url: /about/
+      weight: 40
+    - identifier: privacy
+      name: 개인정보처리방침
+      url: /privacy/
+      weight: 50
+
+markup:
+  goldmark:
+    extensions:
+      # 한글 물결표 범위(60~65세)를 취소선으로 먹어버려서 끈다.
+      strikethrough: false
+    renderer:
+      unsafe: false
+  highlight:
+    noClasses: false

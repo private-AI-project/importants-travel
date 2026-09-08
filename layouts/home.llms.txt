@@ -1,0 +1,21 @@
+{{- /* llms.txt — AI 크롤러가 사이트 전체를 한 파일로 읽는다.
+       사이트맵은 주소만 주지만 이 파일은 제목·설명·날짜를 같이 준다.
+       ChatGPT·Perplexity 가 인용할 후보를 고를 때 참고한다. */ -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+{{ with site.Home.Params.homeInfoParams.Content }}
+{{ . | plainify }}
+{{ end }}
+글쓴이: {{ site.Params.author }}
+마지막 갱신: {{ now.Format "2006-01-02" }}
+{{- range $sec := slice "tools" "posts" }}
+{{- $pages := where site.RegularPages "Section" $sec }}
+{{- with $pages }}
+
+## {{ if eq $sec "tools" }}도구{{ else }}글{{ end }}
+{{ range sort . "Date" "desc" }}
+- [{{ .Title }}]({{ .Permalink }}){{ if not .Date.IsZero }} ({{ .Date.Format "2006-01-02" }}){{ end }}: {{ with .Description }}{{ . | plainify }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}
+{{- end }}
+{{- end }}
+{{- end }}

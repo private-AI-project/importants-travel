@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[##_page_title_##]</title>
+[##_desc_##]
+[##_title_##]
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" as="style" crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+</head>
+<body id="[##_body_id_##]">
+<s_t3>
+
+<a class="skip" href="#content">본문으로 건너뛰기</a>
+
+<header class="top">
+  <div class="inner">
+    <a class="brand" href="[##_blog_link_##]">[##_title_##]</a>
+    <nav class="nav">
+      <a href="[##_blog_link_##]">홈</a>
+      <s_t3_category>[##_t3_category_##]</s_t3_category>
+      <a href="[##_taglog_link_##]">태그</a>
+      <a href="[##_guestbook_link_##]">방명록</a>
+    </nav>
+  </div>
+</header>
+
+<main class="inner" id="content">
+
+  <!-- ── 목록 ─────────────────────────────── -->
+  <s_index>
+    <s_index_article_rep>
+      <article class="card">
+        <a href="[##_article_rep_link_##]">
+          <h2>[##_article_rep_title_##]</h2>
+          <p class="summary">[##_article_rep_simple_desc_##]</p>
+          <p class="meta">[##_article_rep_date_##]</p>
+        </a>
+      </article>
+    </s_index_article_rep>
+  </s_index>
+
+  <!-- ── 글 ───────────────────────────────── -->
+  <s_permalink_article_rep>
+    <article class="post" id="article-[##_article_rep_id_##]">
+      <header class="post-head">
+        <p class="cat"><a href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a></p>
+        <h1>[##_article_rep_title_##]</h1>
+        <p class="meta">[##_article_rep_date_##]</p>
+        <button type="button" class="copy-link" id="copy-link">링크 복사</button>
+      </header>
+
+      [##_revenue_list_upper_##]
+
+      <div class="post-body">
+        [##_article_rep_desc_##]
+      </div>
+
+      <s_tag_label>
+        <div class="tags">
+          <s_tag_label_rep><a href="[##_tag_label_link_##]">[##_tag_label_rep_##]</a></s_tag_label_rep>
+        </div>
+      </s_tag_label>
+
+      [##_revenue_list_lower_##]
+
+      <p class="notice">
+        제도와 금액은 바뀔 수 있습니다. 신청 전에 해당 기관 공식 안내에서 다시 확인하시길 바랍니다.
+        이 글은 정보 전달을 위한 것이며 금융 상품을 권하지 않습니다.
+      </p>
+    </article>
+
+    <s_article_related>
+      <section class="related">
+        <h3>같이 보면 좋은 글</h3>
+        <s_article_related_rep>
+          <a href="[##_article_related_rep_link_##]">[##_article_related_rep_title_##]</a>
+        </s_article_related_rep>
+      </section>
+    </s_article_related>
+
+    <!-- 댓글 -->
+    <section class="comments">
+      <s_rp>
+        <h3>댓글 <span>[##_rp_count_##]</span></h3>
+        <s_rp_container>
+          <s_rp_rep>
+            <div class="cmt" id="[##_rp_rep_id_##]">
+              <p class="cmt-who">[##_rp_rep_name_##] <span>[##_rp_rep_date_##]</span></p>
+              <p class="cmt-body">[##_rp_rep_desc_##]</p>
+              <s_rp_rep_form>[##_rp_rep_form_##]</s_rp_rep_form>
+            </div>
+          </s_rp_rep>
+        </s_rp_container>
+      </s_rp>
+
+      <s_rp_input_form>
+        <div class="cmt-form">
+          <s_rp_member>
+            <p class="cmt-me">[##_rp_member_profile_image_##] [##_rp_member_name_##]</p>
+          </s_rp_member>
+          <s_rp_guest>
+            <div class="guest-row">
+              <input type="text" name="name" value="[##_rp_input_name_##]" placeholder="이름">
+              <input type="password" name="password" value="[##_rp_input_password_##]" placeholder="비밀번호">
+              <input type="text" name="homepage" value="[##_rp_input_homepage_##]" placeholder="홈페이지 (선택)">
+            </div>
+          </s_rp_guest>
+          <textarea name="comment" rows="4" placeholder="댓글을 남겨 주세요">[##_rp_input_comment_##]</textarea>
+          <div class="cmt-send">
+            <label class="secret"><input type="checkbox" name="secret" value="1">비밀글</label>
+            <button type="submit">등록</button>
+          </div>
+        </div>
+      </s_rp_input_form>
+    </section>
+  </s_permalink_article_rep>
+
+  <!-- ── 페이지 이동 ───────────────────────── -->
+  <s_paging>
+    <nav class="paging">
+      <s_paging_rep><a href="[##_paging_rep_link_##]" class="[##_paging_rep_selected_##]">[##_paging_rep_link_num_##]</a></s_paging_rep>
+    </nav>
+  </s_paging>
+
+</main>
+
+<footer class="foot">
+  <div class="inner">
+    <p class="foot-title">[##_title_##]</p>
+    <p class="foot-desc">은퇴를 앞두고 알아둘 것들을 공식 자료에서 찾아 정리합니다.</p>
+    <p class="foot-count">오늘 [##_count_today_##] · 어제 [##_count_yesterday_##] · 전체 [##_count_total_##]</p>
+  </div>
+</footer>
+
+<s_ad_div></s_ad_div>
+[##_page_##]
+</s_t3>
+
+<script>
+// 주소창을 긁어 복사하는 것보다 버튼 하나가 빠르다. 특히 폰에서 그렇다.
+(function () {
+  var btn = document.getElementById("copy-link");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    var url = location.href;
+    function done(ok) {
+      btn.textContent = ok ? "복사됨" : "복사 실패";
+      btn.classList.add("done");
+      setTimeout(function () {
+        btn.textContent = "링크 복사";
+        btn.classList.remove("done");
+      }, 1800);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(function () { done(true); },
+                                              function () { legacy(url, done); });
+    } else {
+      legacy(url, done);
+    }
+  });
+  function legacy(url, cb) {
+    var ta = document.createElement("textarea");
+    ta.value = url;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    cb(ok);
+  }
+})();
+</script>
+</body>
+</html>
