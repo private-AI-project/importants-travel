@@ -48,8 +48,8 @@ params:
   keywords: [국민연금, 퇴직연금, 연금저축, 주택연금, 건강보험료, 노후준비, 중장년재취업, 기초연금]
   defaultTheme: auto
   assets:
-    favicon: /favicon.svg
-    apple_touch_icon: /favicon.svg
+    favicon: /favicon-32x32.png
+    apple_touch_icon: /apple-touch-icon.png
   ShowReadingTime: true
   ShowBreadCrumbs: true
   ShowPostNavLinks: true
