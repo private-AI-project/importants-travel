@@ -9,7 +9,7 @@ enableGitInfo: true
 
 services:
   googleAnalytics:
-    ID: G-XXXXXXXXXX   # TODO: GA4 속성을 새로 만들고 넣는다
+    ID: G-LWNSV20YQR
 
 buildDrafts: false
 buildFuture: false
