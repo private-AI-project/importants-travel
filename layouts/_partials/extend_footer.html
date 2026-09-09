@@ -1,0 +1,48 @@
+{{/* 다른 블로그의 최신 글.
+
+     여섯 사이트가 서로 안 이어져 있어서 크롤러가 한 곳에 들어오면 거기서 끝났다.
+     서치콘솔으로 재보니 표본 27개 중 색인이 5개뿐이고 "구글이 모름" 이 13개였다.
+     사이트끼리 링크를 걸어 발견 경로를 만든다.
+
+     apex 가 하루 두 번 만드는 feed.json 을 빌드할 때 읽어 정적으로 박는다.
+     자바스크립트로 그리면 크롤러가 못 본다.
+
+     두 가지를 조심해야 한다.
+     - PaperMod 0.165 는 _partials 에서 찾는다. partials 에 두면 조용히 무시된다
+     - Resource.Err 은 0.141 에서 없어졌다. try 로 받아야 하고, 그래야 네트워크가
+       막혀도 빌드가 통과한다. 이 블록 때문에 글이 안 나가면 안 된다 */}}
+{{- with try (resources.GetRemote "https://importants-studio.com/feed.json") -}}
+  {{- with .Value -}}
+    {{- $data := .Content | transform.Unmarshal -}}
+    {{- $here := strings.TrimSuffix "/" site.BaseURL -}}
+    {{- $others := slice -}}
+    {{- range $data.blogs -}}
+      {{- if and (ne (strings.TrimSuffix "/" .url) $here) .posts -}}
+        {{- $others = $others | append . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- with $others }}
+    <nav class="sibling" aria-label="다른 블로그">
+      <div class="sibling-title">다른 블로그의 최신 글</div>
+      <ul>
+        {{- range . }}
+        {{- $p := index .posts 0 }}
+        <li>
+          <a class="sibling-name" href="{{ .url }}" style="color:{{ .color }}">{{ .name }}</a>
+          <a class="sibling-post" href="{{ $p.url }}">{{ $p.title }}</a>
+        </li>
+        {{- end }}
+      </ul>
+    </nav>
+    <style>
+    .sibling{max-width:calc(var(--main-width) + var(--gap) * 2);margin:0 auto;padding:26px var(--gap) 4px;border-top:1px solid var(--border)}
+    .sibling-title{font-size:13px;font-weight:700;color:var(--secondary);margin-bottom:10px}
+    .sibling ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+    .sibling li{display:flex;gap:9px;align-items:baseline;font-size:14px;min-width:0}
+    .sibling-name{font-weight:700;white-space:nowrap;text-decoration:none}
+    .sibling-post{color:var(--content);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .sibling-post:hover{text-decoration:underline}
+    </style>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
