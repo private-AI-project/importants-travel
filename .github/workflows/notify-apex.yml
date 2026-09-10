@@ -1,0 +1,41 @@
+name: notify-apex
+
+# 글이 main 에 들어가면 apex 매거진 홈을 바로 다시 만들게 한다.
+#
+# apex 는 예약 실행으로도 2시간마다 갱신되는데, GitHub 예약은 자주 밀린다.
+# 실제로 4시간 늦거나 아예 건너뛴 적이 있어 매거진 홈이 하루 묵은 글을 보여줬다.
+# 이 이벤트가 있으면 예약에 안 기댄다.
+#
+# APEX_DISPATCH_TOKEN 이 없으면 조용히 넘어간다. 이 워크플로 때문에 글 배포가
+# 막히면 안 된다.
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/posts/**"]
+
+permissions: {}
+
+concurrency:
+  group: notify-apex
+  cancel-in-progress: true
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: apex 깨우기
+        env:
+          TOKEN: ${{ secrets.APEX_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "APEX_DISPATCH_TOKEN 미설정. 예약 실행에 맡기고 넘어갑니다."
+            exit 0
+          fi
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $TOKEN" \
+            https://api.github.com/repos/importantsgit/importants-studio-site/dispatches \
+            -d '{"event_type":"blog-updated"}')
+          echo "dispatch HTTP $code"
+          [ "$code" = "204" ] || echo "실패했지만 배포는 계속합니다."
