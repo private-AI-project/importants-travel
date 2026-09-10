@@ -593,3 +593,14 @@ ul.post-tags li a:hover,
     color: var(--secondary);
     line-height: 1.5;
 }
+
+/* 카카오톡 채널 추가. 버튼 색은 카카오 가이드(#FEE500 / #191600). 라이트·다크 공통이라 변수 안 씀. */
+.kakao-channel{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:20px 0 28px;padding:16px 20px;border:1px solid var(--border);border-radius:14px;background:var(--entry)}
+.kakao-channel-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.kakao-channel-text strong{font-size:15px}
+.kakao-channel-text span{font-size:13px;color:var(--secondary)}
+.kakao-channel-btn{flex-shrink:0;padding:11px 16px;border-radius:10px;background:#FEE500;color:#191600;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+.kakao-channel-btn:hover{opacity:.9}
+@media (max-width:480px){.kakao-channel{flex-direction:column;align-items:stretch}.kakao-channel-btn{text-align:center}}
+.kakao-footer{max-width:calc(var(--main-width) + var(--gap) * 2);margin:0 auto;padding:14px var(--gap) 4px;font-size:13px;color:var(--secondary)}
+.kakao-footer a{color:var(--primary);font-weight:700;text-decoration:none}
