@@ -211,7 +211,7 @@
         var mode = btn.getAttribute("data-share");
         if (mode === "native") {
           if (navigator.share) {
-            navigator.share({ title: "여권·무비자 확인기", text: shareText, url: url }).catch(function () {});
+            navigator.share({ title: "여권 유효기간·무비자·ESTA 확인기", text: shareText, url: url }).catch(function () {});
           } else {
             copyTo(btn, shareText + "\n" + url, "복사됨 (카톡에 붙여넣기)");
           }
