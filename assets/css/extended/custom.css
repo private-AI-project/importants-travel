@@ -279,6 +279,18 @@ ul.post-tags li a:hover,
     border-color: var(--accent);
 }
 
+.calc-field label input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.calc-field label:has(input[type="checkbox"]) {
+    font-weight: 400;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
 .calc-hint {
     margin: 8px 0 0;
     font-size: 13px;
@@ -497,4 +509,87 @@ ul.post-tags li a:hover,
     .post-content table { font-size: 13.5px; }
     .post-content table th,
     .post-content table td { padding: 8px 9px; }
+}
+
+/* 판정 결과 색. 라이트·다크 양쪽을 같이 정의해야 한쪽에서 글씨가 안 보이는 일이 없다. */
+:root {
+    --calc-fail: #c0392b;
+    --calc-warn: #b9770e;
+}
+:root[data-theme=dark] {
+    --calc-fail: #ef8a7f;
+    --calc-warn: #e0b155;
+}
+
+/* 요건별 통과·탈락 목록. 어디서 걸렸는지 모르면 고칠 수도 없다. */
+.calc-checklist {
+    margin: 20px auto 0;
+    padding: 0;
+    max-width: 480px;
+    list-style: none;
+    text-align: left;
+}
+
+.calc-checklist li {
+    position: relative;
+    padding: 10px 0 10px 30px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.calc-checklist li:first-child { border-top: none; }
+
+.calc-checklist li::before {
+    position: absolute;
+    left: 4px;
+    top: 10px;
+    font-weight: 700;
+}
+
+.calc-checklist li.pass::before { content: "O"; color: var(--accent); }
+.calc-checklist li.fail::before { content: "X"; color: var(--calc-fail); }
+.calc-checklist li.warn::before { content: "!"; color: var(--calc-warn); }
+
+.calc-checklist strong { display: block; font-weight: 600; }
+.calc-checklist span { display: block; margin-top: 2px; color: var(--secondary); }
+.calc-checklist li.fail strong { color: var(--calc-fail); }
+.calc-checklist li.warn strong { color: var(--calc-warn); }
+
+/* 산출 과정 분해. 결과가 숫자 하나면 사용자가 검증할 수 없다. */
+.calc-breakdown {
+    margin: 20px auto 0;
+    max-width: 480px;
+    text-align: left;
+}
+
+.calc-breakdown h4 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.calc-breakdown ul { margin: 0; padding: 0; list-style: none; }
+
+.calc-breakdown li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.calc-breakdown li:first-child { border-top: none; }
+.calc-breakdown li:last-child { border-top: 2px solid var(--accent); }
+
+.bd-label { font-weight: 500; }
+.bd-value { text-align: right; white-space: nowrap; }
+
+.bd-note {
+    grid-column: 1 / -1;
+    font-size: 12px;
+    color: var(--secondary);
+    line-height: 1.5;
 }
