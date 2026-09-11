@@ -1,0 +1,18 @@
+{{/* 도구를 남의 블로그에 붙이는 코드. 가져다 쓰는 곳마다 출처 링크가 생긴다.
+     외부 링크 0 인 신규 도메인의 색인 문제를 자산으로 푸는 길이다. */}}
+{{- $embed := .OutputFormats.Get "embed" }}
+{{- if $embed }}
+{{- $short := index (split .Title ":") 0 | strings.TrimSpace }}
+<details class="embed-code">
+  <summary>이 계산기를 내 블로그에 붙이기</summary>
+  <p>아래 코드를 그대로 붙이면 이 계산기가 그 자리에서 동작합니다. 워드프레스·티스토리·노션처럼 iframe 을 허용하는 곳에서 됩니다. 기준이 바뀌면 여기서 고치는 대로 붙인 곳도 함께 바뀝니다. 출처 줄은 지우지 말아 주세요.</p>
+  <textarea readonly rows="5" spellcheck="false">&lt;iframe src="{{ $embed.Permalink }}" width="100%" height="900" style="border:0;max-width:720px" loading="lazy" title="{{ $short }}"&gt;&lt;/iframe&gt;
+&lt;p style="font-size:13px"&gt;&lt;a href="{{ .Permalink }}"&gt;{{ $short }}&lt;/a&gt; · 제공 &lt;a href="{{ site.BaseURL }}"&gt;{{ site.Title }}&lt;/a&gt;&lt;/p&gt;</textarea>
+  <button type="button" class="calc-btn" data-copy-embed>코드 복사</button>
+</details>
+<script>
+(function(){var d=document.querySelector(".embed-code");if(!d)return;var b=d.querySelector("[data-copy-embed]"),t=d.querySelector("textarea");
+b.addEventListener("click",function(){navigator.clipboard.writeText(t.value).then(function(){var o=b.textContent;b.textContent="복사됨";
+if(window.gtag)gtag("event","embed_copy",{tool_path:location.pathname});setTimeout(function(){b.textContent=o;},2000);});});})();
+</script>
+{{- end }}

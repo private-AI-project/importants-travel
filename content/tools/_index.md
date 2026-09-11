@@ -1,4 +1,8 @@
 ---
+cascade:
+  - _target:
+      kind: page
+    outputs: [html, embed]
 title: "도구"
 description: "떠나기 전에 확인해야 할 것들을 대신 따져주는 도구 모음입니다. 공식 기준을 근거로 만들었으며, 출국 전에는 외교부에서 다시 확인하세요."
 ---

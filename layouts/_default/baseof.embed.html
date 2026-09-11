@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language }}" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+{{- with .OutputFormats.Get "html" }}<link rel="canonical" href="{{ .Permalink }}">{{ end }}
+<title>{{ index (split .Title ":") 0 | strings.TrimSpace }} · {{ site.Title }}</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+{{- $theme_vars := resources.Get "css/core/theme-vars.css" }}
+{{- $reset := resources.Get "css/core/reset.css" }}
+{{- $common := resources.Match "css/common/*.css" | resources.Concat "assets/css/embed-common.css" }}
+{{- $extended := resources.Match "css/extended/*.css" | resources.Concat "assets/css/embed-extended.css" }}
+{{- $css := slice $theme_vars $reset $common $extended | resources.Concat "assets/css/embed.css" | resources.Minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- with site.Params.googleAnalytics }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','{{ . }}',{page_title:'embed:'+document.title});</script>
+{{- end }}
+</head>
+<body class="embed">
+<main class="main embed">
+{{ block "main" . }}{{ end }}
+</main>
+<script>
+// 부모 페이지가 iframe 높이를 맞출 수 있게 알려준다. 부모가 안 들으면 그냥 무시된다.
+(function(){function h(){parent.postMessage({importantsEmbed:true,height:document.documentElement.scrollHeight},"*");}
+new ResizeObserver(h).observe(document.body);h();})();
+</script>
+</body>
+</html>
