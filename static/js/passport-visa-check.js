@@ -200,6 +200,7 @@
 
     box.innerHTML = html;
     box.hidden = false;
+    if (window.gtag) gtag("event", "tool_result", { tool_path: location.pathname });
 
     var url = "https://travel.importants-studio.com/tools/passport-visa-check/";
     var shareText = r.ok
