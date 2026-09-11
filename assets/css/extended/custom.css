@@ -594,12 +594,15 @@ ul.post-tags li a:hover,
     line-height: 1.5;
 }
 
-/* 제휴 슬롯. 결과 상자 안, 공식 링크 버튼 위. 광고처럼 보이면 안 눌리고 숨기면 표시 의무 위반이다. */
-.affiliate{margin:22px auto 0;max-width:480px;text-align:left;padding:14px 16px;border:1px dashed var(--border);border-radius:12px}
-.affiliate-title{font-size:13px;font-weight:700;margin-bottom:8px}
-.affiliate-title span{display:block;font-weight:400;color:var(--secondary);font-size:12px;margin-top:2px}
-.affiliate ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.affiliate li{display:flex;gap:8px;align-items:baseline;font-size:14px;line-height:1.5}
-.affiliate li a{font-weight:600;white-space:nowrap;color:var(--accent);text-decoration:none}
-.affiliate li a:hover{text-decoration:underline}
-.affiliate li span{color:var(--secondary);font-size:13px}
+/* 제휴 슬롯. 결과 → 추천 1개(버튼) → 공식 링크 순서. 버튼이 텍스트 링크보다 모바일에서 최대 2배 눌린다. */
+.affiliate-notice{margin-top:4px;font-weight:600}
+.affiliate{margin:22px auto 0;max-width:480px;text-align:left;padding:16px;border:1px solid var(--border);border-radius:14px;background:var(--entry)}
+.affiliate-title{font-size:13px;font-weight:700;margin-bottom:10px}
+.affiliate-title span{margin-left:6px;padding:1px 7px;border-radius:8px;background:var(--border);color:var(--secondary);font-size:11px;font-weight:600}
+.affiliate-pick{display:flex;flex-direction:column;gap:10px}
+.affiliate-pick-text strong{display:block;font-size:16px}
+.affiliate-pick-text span{display:block;margin-top:3px;font-size:14px;line-height:1.55;color:var(--content)}
+.affiliate-btn{display:block;text-align:center;padding:13px 16px;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;font-size:15px;text-decoration:none}
+.affiliate-btn:hover{opacity:.92}
+.affiliate-alt{margin:12px 0 0;font-size:13px;color:var(--secondary);line-height:1.6}
+.affiliate-alt a{color:var(--primary);font-weight:600;text-decoration:underline}

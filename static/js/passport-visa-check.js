@@ -185,19 +185,25 @@
     html += "</ul>";
 
 
-    // 제휴 슬롯. 링크프라이스 기본링크(m=머천트, a=매체). 표시 의무가 있어 "제휴 링크"를 밝힌다.
-    // 못 가는 결과에는 붙이지 않는다. 여권부터 고쳐야 하는 사람에게 eSIM 을 파는 건 순서가 틀렸다.
+    // 제휴 슬롯. 통과 결과에만. 나열보다 "추천 1개 + 이유 한 줄 + 버튼"이 눌린다(버튼이 텍스트보다
+    // 모바일 최대 2배). 고지는 헤더 상단에 있다(2024-12 지침). 여기선 짧은 라벨만 반복한다.
     if (r.ok) {
       var lp = function (m) { return "https://lpweb.kr/click.php?m=" + m + "&a=A100707637&l=0000"; };
+      var multi = c.id === "eu" || c.rolling;
       html += '<aside class="affiliate">';
-      html += '<div class="affiliate-title">출발 전에 같이 챙기는 것 <span>제휴 링크 · 구매 시 이 사이트에 수수료가 돌아옵니다</span></div>';
-      html += '<ul>';
-      html += '<li><a href="' + lp("usimsa") + '" target="_blank" rel="noopener sponsored" data-aff="usimsa">유심사 eSIM</a><span>도착 전에 설치해 두면 공항에서 바로 켜집니다</span></li>';
-      html += '<li><a href="' + lp("dosirak1") + '" target="_blank" rel="noopener sponsored" data-aff="dosirak1">도시락이심</a><span>국내 업체라 문의가 한국어로 됩니다</span></li>';
-      html += '<li><a href="' + lp("airalo") + '" target="_blank" rel="noopener sponsored" data-aff="airalo">Airalo</a><span>200개국 지원, 여러 나라를 돌 때</span></li>';
-      html += '<li><a href="' + lp("agoda") + '" target="_blank" rel="noopener sponsored" data-aff="agoda">아고다</a><span>숙소 예약 확인서가 입국 심사에서 요구될 수 있습니다</span></li>';
-      html += '<li><a href="' + lp("klook") + '" target="_blank" rel="noopener sponsored" data-aff="klook">클룩</a><span>현지 교통·입장권을 미리 끊을 때</span></li>';
-      html += '</ul></aside>';
+      html += '<div class="affiliate-title">출발 전에 챙길 것 하나 <span>제휴</span></div>';
+      if (multi) {
+        html += '<div class="affiliate-pick"><div class="affiliate-pick-text"><strong>Airalo eSIM</strong>' +
+                '<span>여러 나라를 도는 일정이면 200개국 지원되는 걸로. 도착 전에 설치해 두면 공항에서 바로 켜집니다.</span></div>' +
+                '<a class="affiliate-btn" href="' + lp("airalo") + '" target="_blank" rel="noopener sponsored" data-aff="airalo">Airalo에서 ' + c.name.split(" ")[0] + ' eSIM 보기</a></div>';
+        html += '<p class="affiliate-alt">한 나라만 가면 <a href="' + lp("usimsa") + '" target="_blank" rel="noopener sponsored" data-aff="usimsa">유심사</a>가 더 싼 경우가 많습니다 · 숙소 예약 확인서가 필요하면 <a href="' + lp("agoda") + '" target="_blank" rel="noopener sponsored" data-aff="agoda">아고다</a></p>';
+      } else {
+        html += '<div class="affiliate-pick"><div class="affiliate-pick-text"><strong>유심사 eSIM</strong>' +
+                '<span>한국 업체라 문의가 한국어로 되고, 도착 전에 설치해 두면 공항에서 바로 켜집니다.</span></div>' +
+                '<a class="affiliate-btn" href="' + lp("usimsa") + '" target="_blank" rel="noopener sponsored" data-aff="usimsa">유심사에서 ' + c.name.split(" ")[0] + ' eSIM 보기</a></div>';
+        html += '<p class="affiliate-alt">여러 나라를 돌면 <a href="' + lp("airalo") + '" target="_blank" rel="noopener sponsored" data-aff="airalo">Airalo</a> · 숙소 예약 확인서가 필요하면 <a href="' + lp("agoda") + '" target="_blank" rel="noopener sponsored" data-aff="agoda">아고다</a></p>';
+      }
+      html += '</aside>';
     }
 
     html += '<div class="calc-actions">';
