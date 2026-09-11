@@ -594,3 +594,12 @@ ul.post-tags li a:hover,
     line-height: 1.5;
 }
 
+/* 제휴 슬롯. 결과 상자 안, 공식 링크 버튼 위. 광고처럼 보이면 안 눌리고 숨기면 표시 의무 위반이다. */
+.affiliate{margin:22px auto 0;max-width:480px;text-align:left;padding:14px 16px;border:1px dashed var(--border);border-radius:12px}
+.affiliate-title{font-size:13px;font-weight:700;margin-bottom:8px}
+.affiliate-title span{display:block;font-weight:400;color:var(--secondary);font-size:12px;margin-top:2px}
+.affiliate ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.affiliate li{display:flex;gap:8px;align-items:baseline;font-size:14px;line-height:1.5}
+.affiliate li a{font-weight:600;white-space:nowrap;color:var(--accent);text-decoration:none}
+.affiliate li a:hover{text-decoration:underline}
+.affiliate li span{color:var(--secondary);font-size:13px}
