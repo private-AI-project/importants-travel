@@ -606,3 +606,19 @@ ul.post-tags li a:hover,
 .affiliate-btn:hover{opacity:.92}
 .affiliate-alt{margin:12px 0 0;font-size:13px;color:var(--secondary);line-height:1.6}
 .affiliate-alt a{color:var(--primary);font-weight:600;text-decoration:underline}
+
+/* 임베드 출력. 남의 블로그 iframe 안에서 도구만 보인다. */
+body.embed{margin:0;padding:0}
+.main.embed{max-width:none;margin:0;padding:8px 12px 16px}
+.embed-title{margin:0 0 12px;font-size:18px;font-weight:700}
+.embed-credit{margin:14px 0 0;font-size:12px;color:var(--secondary);text-align:center}
+.embed-credit a{color:var(--secondary);text-decoration:underline}
+.embed-tool .calc-form{margin-top:0}
+.embed-tool .calc-share{display:none}
+
+/* "내 블로그에 붙이기". 결과 아래 접힌 상태. */
+.embed-code{margin:18px 0 28px;padding:14px 16px;border:1px solid var(--border);border-radius:12px;background:var(--entry)}
+.embed-code summary{cursor:pointer;font-weight:600;font-size:15px}
+.embed-code p{margin:10px 0;font-size:13px;color:var(--secondary);line-height:1.6}
+.embed-code textarea{width:100%;box-sizing:border-box;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;padding:10px;border:1px solid var(--border);border-radius:8px;background:var(--theme);color:var(--primary);resize:vertical}
+.embed-code .calc-btn{margin-top:8px}

@@ -1,0 +1,8 @@
+{{ define "main" }}
+<div class="embed-tool">
+  <h2 class="embed-title">{{ index (split .Title ":") 0 | strings.TrimSpace }}</h2>
+  {{ partial "embed/passport-visa-check.html" . }}
+  <p class="embed-credit"><a href="{{ (.OutputFormats.Get "html").Permalink }}" target="_blank" rel="noopener">{{ .Title }}</a> · 제공 <a href="{{ site.BaseURL }}" target="_blank" rel="noopener">{{ site.Title }}</a></p>
+</div>
+<script src="/js/passport-visa-check.js" defer></script>
+{{ end }}

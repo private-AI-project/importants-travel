@@ -9,34 +9,9 @@
   <div class="post-content">
     <p>목적지와 날짜, 여권 만료일만 넣으면 세 가지를 확인해 드립니다. 지금 여권으로 들어갈 수 있는지, 무비자로 며칠까지 있을 수 있는지, 사전허가를 따로 받아야 하는지. 입력한 값은 서버로 보내지 않고 브라우저 안에서만 계산됩니다.</p>
 
-    <form id="passport-form" class="calc-form">
-      <div class="calc-field">
-        <label for="country">목적지</label>
-        <select id="country" name="country"></select>
-        <p class="calc-hint">나라마다 요구하는 여권 잔여기간이 다릅니다. 6개월인 곳도 있고 규정이 아예 없는 곳도 있습니다.</p>
-      </div>
+    {{ partial "embed/passport-visa-check.html" . }}
 
-      <div class="calc-field">
-        <label for="depart">출국일</label>
-        <input type="date" id="depart" name="depart" required>
-      </div>
-
-      <div class="calc-field">
-        <label for="back">귀국일</label>
-        <input type="date" id="back" name="back" required>
-        <p class="calc-hint">체류 일수는 입국일과 출국일을 모두 세서 계산합니다.</p>
-      </div>
-
-      <div class="calc-field">
-        <label for="expiry">여권 만료일</label>
-        <input type="date" id="expiry" name="expiry" required>
-        <p class="calc-hint">여권 사진면 오른쪽 아래 "기간만료일"입니다. 발급일이 아닙니다.</p>
-      </div>
-
-      <button type="submit" class="calc-submit">이 여권으로 갈 수 있는지 보기</button>
-    </form>
-
-    <div id="calc-result" class="calc-result" hidden></div>
+    {{ partial "embed_code.html" . }}
 
     {{ .Content }}
   </div>

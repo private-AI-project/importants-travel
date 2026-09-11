@@ -28,6 +28,11 @@ minify:
       keepQuotes: true
 
 outputFormats:
+  EMBED:
+    mediaType: text/html
+    baseName: embed
+    isHTML: true
+    notAlternative: true
   LLMS:
     mediaType: text/plain
     baseName: llms
