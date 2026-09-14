@@ -24,7 +24,6 @@ faq:
 cover:
   image: "/images/covers/passport-visa-check.jpg"
   alt: "여권과 항공권이 놓인 모습"
-  caption: "사진: Borys Zaitsev / Pexels"
 ---
 
 ## 왜 만들었나
