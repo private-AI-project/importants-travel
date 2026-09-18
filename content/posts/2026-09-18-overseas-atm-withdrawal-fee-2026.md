@@ -33,7 +33,7 @@ faq:
 
 ## 카드사 수수료 면제 조건은 카드마다 다릅니다
 
-같은 "수수료 면제" 문구라도 실제 조건은 카드별로 갈립니다. 카드사 공식 안내를 기준으로 정리하면 이렇습니다.
+같은 "수수료 면제" 문구라도 실제 조건은 카드별로 갈립니다. [신한카드 SOL트래블](https://www.shinhancard.com/pconts/html/card/travel/travel_check.html), [하나카드 트래블로그](https://smart.hanacard.co.kr/travlog/travlog.html), [트래블월렛 고객센터](https://travel-wallet-help.oopy.io/cf6dca5c-13ca-4e7a-ba4f-21dc58197825) 공식 안내를 기준으로 정리하면 이렇습니다.
 
 | 카드 | 카드사 수수료 면제 내용 | 적용 조건 | 인출 한도 |
 |---|---|---|---|
