@@ -91,6 +91,10 @@ menu:
       name: 소개
       url: /about/
       weight: 40
+    - identifier: contact
+      name: 문의
+      url: /contact/
+      weight: 45
     - identifier: privacy
       name: 개인정보처리방침
       url: /privacy/
