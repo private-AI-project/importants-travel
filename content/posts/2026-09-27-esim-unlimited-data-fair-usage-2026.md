@@ -31,7 +31,7 @@ faq:
 
 ## 에어알로는 24시간 3GB, 넘으면 1Mbps로 떨어집니다
 
-여러 나라에서 쓰이는 이심 판매 플랫폼 에어알로(Airalo)는 자사 Unlimited 요금제의 공정사용정책을 공식 페이지에 구체적인 수치로 안내합니다. [Airalo 공식 안내](https://www.airalo.com/m/resources/unlimited-data-plans-fair-use-policy)에 따르면 하루 3GB까지는 고속으로 쓸 수 있고 이 한도를 넘기면 속도가 1Mbps로 줄어듭니다. 1Mbps에서도 메시지 송수신, 지도 내비게이션, 저화질 웹 페이지 열람 정도는 가능하다고 설명합니다.
+여러 나라에서 쓰이는 이심 판매 플랫폼 에어알로(Airalo)는 자사 Unlimited 요금제의 공정사용정책을 공식 페이지에 구체적인 수치로 안내합니다. [Airalo 공식 안내](https://www.airalo.com/m/resources/unlimited-data-plans-fair-use-policy)에 따르면 기본값은 하루 3GB이고 여기까지는 고속으로 쓸 수 있습니다. 다만 이 기준은 패키지마다 다를 수 있어 구매 전 상품 설명에 적힌 값을 확인하셔야 합니다. 이 한도를 넘기면 속도가 1Mbps로 줄어듭니다. 1Mbps에서도 메시지 송수신, 지도 내비게이션, 간단한 웹 페이지 열람과 저화질 화상통화 정도는 가능하다고 설명합니다.
 
 기준이 되는 24시간은 자정이 아니라 이심을 활성화한 시각부터 계산됩니다. 오후 2시에 이심을 켰다면 매일 오후 2시에 고속 데이터 3GB가 다시 채워지는 식입니다. 같은 회사의 [속도 저하 관련 안내](https://www.airalo.com/blog/is-my-data-being-throttled)에도 같은 수치가 반복해서 나와 있어, 3GB·1Mbps 기준은 마케팅 문구가 아니라 실제 적용되는 조건으로 보입니다.
 
