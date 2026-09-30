@@ -7,6 +7,9 @@ description: "성인 여권 발급 준비물은 신청서, 신분증, 6개월 �
 tags: ["여권발급준비물", "여권사진규정", "긴급여권"]
 categories: ["서류"]
 sourceUrl: "https://www.passport.go.kr/home/kor/contents.do?menuPos=2"
+cover:
+  image: "/images/passport-first-issue-documents-2026-1.jpg"
+  alt: "어두운 탁자 위에 놓인 여권"
 faq:
   - q: 성인이 여권을 처음 만들 때 가져갈 것은 무엇인가요?
     a: 여권발급신청서, 신분증, 신청일 전 6개월 이내에 찍은 여권용 사진 1매입니다. 가족관계기록사항 증명서는 행정정보공동이용망으로 확인되면 내지 않아도 됩니다.
