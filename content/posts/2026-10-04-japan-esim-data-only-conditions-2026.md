@@ -1,5 +1,5 @@
 ---
-title: "일본 eSIM 무제한, 하루 3GB 넘으면 1Mbps이고 전화번호는 없습니다"
+title: "일본 eSIM 무제한, 에어알로는 하루 3GB 넘으면 1Mbps입니다"
 date: 2026-10-04T09:00:00+09:00
 draft: false
 slug: "japan-esim-data-only-conditions-2026"
@@ -25,9 +25,9 @@ faq:
 
 일본 eSIM을 검색하면 "무제한"이라는 말이 먼저 보입니다. 실제로 확인해야 할 내용은 그 뒤에 있습니다. 하루에 몇 GB까지 빠른지, 전화번호가 나오는지, 언제 설치하고 언제부터 날짜가 가는지입니다. 이 글은 2026년 10월 4일 기준으로 에어알로(Airalo) 공식 안내와 홀라플라이(Holafly) 공식 페이지에서 확인한 내용입니다. 요금은 수시로 바뀌니 결제 전에 상품 페이지를 다시 보시길 바랍니다.
 
-## 일본 eSIM 무제한은 하루 3GB 뒤에 1Mbps입니다
+## 에어알로 무제한은 하루 3GB 뒤에 1Mbps입니다
 
-에어알로 일본 상품은 기간별로 3일, 5일, 7일, 10일, 15일, 30일이 있고 모두 데이터량이 "무제한"으로 표시됩니다. [에어알로 일본 10일 상품 페이지](https://www.airalo.com/japan-esim/moshi-moshi-10days-unlimited)에는 "하루 3GB 사용 후 1Mbps로 속도 저하"라는 조건이 적혀 있습니다. 같은 회사의 [공정사용정책 안내](https://www.airalo.com/m/resources/unlimited-data-plans-fair-use-policy)에도 3GB와 1Mbps 기준이 나옵니다. 기준이 되는 24시간은 자정이 아니라 eSIM을 활성화한 시각부터 셉니다. 이 구조는 [이심 무제한 조건을 다룬 글](/posts/esim-unlimited-data-fair-usage-2026/)에서 더 자세히 정리했습니다.
+에어알로 일본에는 용량제 상품과 무제한 상품이 같이 있습니다. 무제한 쪽은 기간별로 3일, 5일, 7일, 10일, 15일, 30일이 있습니다. [에어알로 일본 10일 상품 페이지](https://www.airalo.com/japan-esim/moshi-moshi-10days-unlimited)에는 "하루 3GB 사용 후 1Mbps로 속도 저하"라는 조건이 적혀 있습니다. 같은 회사의 [공정사용정책 안내](https://www.airalo.com/m/resources/unlimited-data-plans-fair-use-policy)에도 3GB와 1Mbps 기준이 나오는데, 이 3GB는 기본값이고 상품에 따라 다를 수 있다고 적혀 있습니다. 다른 회사는 기준이 또 다릅니다. 홀라플라이는 일본 페이지에 용량과 속도 수치를 아예 적지 않습니다. 무제한이라는 말만 보고 조건이 같을 거라고 보면 안 됩니다. 기준이 되는 24시간은 자정이 아니라 eSIM을 활성화한 시각부터 셉니다. 이 구조는 [이심 무제한 조건을 다룬 글](/posts/esim-unlimited-data-fair-usage-2026/)에서 더 자세히 정리했습니다.
 
 기간별 요금은 다음과 같습니다.
 
