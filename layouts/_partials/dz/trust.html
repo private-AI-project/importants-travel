@@ -1,6 +1,7 @@
-{{- /* 글 머리 띠: 최종 확인일(front matter verified > lastmod > date) · 출처 기관. git 날짜는 얕은 체크아웃이라 쓰지 않는다. */ -}}
+{{- /* 글 머리 띠: 최종 확인일(front matter verified > 발행일) · 출처 기관.
+       .Params.lastmod 는 enableGitInfo 때문에 git 날짜로 채워지고, Actions 는 얕은 체크아웃이라 전부 배포한 날이 된다. 쓰지 말 것. */ -}}
 {{- $L := site.Data.dz.labels }}
-{{- $v := .Params.verified | default .Params.lastmod | default .Date }}
+{{- $v := .Params.verified | default .Date }}
 <div class="dz-trust">
   <span>{{ $L.verified }} <b>{{ time.Format "2006.01.02" $v }}</b></span>
   {{- with .Params.sourceUrl }}
