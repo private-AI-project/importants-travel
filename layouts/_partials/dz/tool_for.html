@@ -1,0 +1,6 @@
+{{- /* 글과 맞는 도구 찾기: 글의 tool 값(도구 slug) → 없으면 도구 첫 태그가 글 태그나 제목에 있을 때. */ -}}
+{{- $page := . }}{{ $hit := false }}
+{{- $tools := where site.RegularPages "Section" "tools" }}
+{{- with $page.Params.tool }}{{ $want := . }}{{ range $tools }}{{ if eq (path.Base .RelPermalink) $want }}{{ $hit = . }}{{ end }}{{ end }}{{ end }}
+{{- if not $hit }}{{ range $tools }}{{ $t := . }}{{ if not $hit }}{{ with .Params.tags }}{{ $k := index . 0 }}{{ if or (in ($page.Params.tags | default slice) $k) (in $page.Title $k) }}{{ $hit = $t }}{{ end }}{{ end }}{{ end }}{{ end }}{{ end }}
+{{- return $hit }}

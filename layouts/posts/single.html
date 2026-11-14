@@ -1,0 +1,53 @@
+{{- /* 공통 디자인(shared-design) 글 화면(posts 섹션만). 소개·문의 같은 페이지는 PaperMod 원래 single 그대로.
+       원본은 ~/blog-automation/shared-design/ 이고 sync.py 가 각 블로그로 복사한다. 여기서 고치지 말 것. */ -}}
+{{- define "main" }}
+{{- $d := site.Data.dz }}{{ $L := $d.labels }}
+{{- $tool := partial "dz/tool_for.html" . }}
+{{- $card := "" }}{{ with $tool }}{{ $card = partial "dz/tool_card.html" (dict "t" .) }}{{ end }}
+{{- $content := partial "anchored_headings.html" .Content }}
+{{- if $card }}{{ $content = replace $content "<h2" (print $card "<h2") 1 }}{{ end }}
+{{- $toc := .TableOfContents }}
+{{- $hasToc := and (.Param "ShowToc") (gt (len (findRE "<li>" $toc)) 1) }}
+<article class="post-single dz dz-post dz-{{ $d.layout }} {{ $d.variant }}">
+  <header class="post-header dz-ph">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+    {{ partial "dz/trust.html" . }}
+  </header>
+  <div class="dz-grid">
+    <div class="dz-body">
+      {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+      {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
+      {{- if $hasToc }}
+      <details class="dz-mtoc"{{ if eq $d.variant "c2" }} open{{ end }}><summary>{{ $L.toc }}</summary>{{ $toc | safeHTML }}</details>
+      {{- end }}
+      {{- with .Params.keypoints }}
+      <div class="dz-key"><h3>{{ $L.keypoints }}</h3><ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul></div>
+      {{- end }}
+      <div class="post-content md-content">{{ $content | safeHTML }}</div>
+      {{- partial "extend_post_content.html" . }}
+    </div>
+    <aside class="dz-aside">
+      {{- if and $hasToc (ne $d.variant "c2") }}
+      <nav class="dz-toc"><h4>{{ $L.toc }}</h4>{{ $toc | safeHTML }}</nav>
+      {{- end }}
+      {{- with $tool }}
+      <a class="dz-cta" href="{{ .RelPermalink }}"><small>{{ $L.tool_card }}</small><b>{{ index (split (index (split .Title ":") 0) "(") 0 | strings.TrimSpace }}</b><span>{{ $L.tool_go }}</span></a>
+      {{- end }}
+    </aside>
+  </div>
+  <footer class="post-footer">
+    <ul class="post-tags">{{ range (.GetTerms "tags") }}<li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>
+    {{- if (.Param "ShowPostNavLinks") }}{{ partial "post_nav_links.html" . }}{{ end }}
+    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}{{ partial "share_icons.html" . }}{{ end }}
+  </footer>
+</article>
+<script>
+/* 목차: 지금 읽는 소제목을 표시한다. */
+(function(){var l=document.querySelectorAll('.dz-toc a');if(!l.length||!('IntersectionObserver'in window))return;
+var m={};l.forEach(function(a){m[decodeURIComponent(a.hash.slice(1))]=a});
+var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('on')});var a=m[e.target.id];if(a)a.classList.add('on')}})},{rootMargin:'0px 0px -70% 0px'});
+document.querySelectorAll('.post-content h2[id],.post-content h3[id]').forEach(function(h){o.observe(h)})})();
+</script>
+{{- end }}

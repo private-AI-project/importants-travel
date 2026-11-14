@@ -1,0 +1,3 @@
+<div class="dz-rows">{{ range $i, $p := .pages }}
+  <a class="dz-row" href="{{ $p.RelPermalink }}">{{ if $.num }}<em>{{ add $i 1 }}</em>{{ end }}<div><small>{{ with $p.Params.categories }}{{ index . 0 }}{{ end }}</small><b>{{ $p.Title }}</b></div></a>{{ end }}
+</div>

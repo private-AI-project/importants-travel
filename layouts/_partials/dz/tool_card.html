@@ -1,0 +1,2 @@
+{{- $t := .t }}{{ $L := site.Data.dz.labels }}
+<div class="dz-calc"><div><small>{{ $L.tool_card }}</small><b>{{ index (split (index (split $t.Title ":") 0) "(") 0 | strings.TrimSpace }}</b><p>{{ $t.Description }}</p></div><a href="{{ $t.RelPermalink }}">{{ $L.tool_go }}</a></div>

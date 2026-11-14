@@ -1,0 +1,19 @@
+{{- /* 첫 화면 검색. 처음 누를 때 /index.json(PaperMod 검색 색인)을 받아 제목·요약에서 찾는다. */ -}}
+{{- $L := site.Data.dz.labels }}
+<form class="dz-search" action="{{ "search/" | relURL }}" role="search" onsubmit="return false">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  <input type="search" name="q" placeholder="{{ $L.search_ph }}" aria-label="{{ $L.search_ph }}" autocomplete="off" data-idx="{{ "index.json" | relURL }}" data-none="{{ $L.no_result }}">
+  <ul class="dz-results" hidden></ul>
+</form>
+<script>
+(function(){var f=document.currentScript.previousElementSibling,i=f.querySelector('input'),u=f.querySelector('ul'),d=null,t;
+function load(){if(d)return Promise.resolve(d);return fetch(i.dataset.idx).then(function(r){return r.json()}).then(function(j){d=j;return j})}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function run(){var q=i.value.trim().toLowerCase();if(!q){u.hidden=true;return}
+load().then(function(a){var ws=q.split(/\s+/),r=a.filter(function(p){var s=(p.title+' '+(p.summary||'')).toLowerCase();return ws.every(function(w){return s.indexOf(w)>-1})});
+r.sort(function(x,y){return (y.title.toLowerCase().indexOf(ws[0])>-1)-(x.title.toLowerCase().indexOf(ws[0])>-1)});
+u.innerHTML=r.length?r.slice(0,8).map(function(p){return '<li><a href="'+esc(p.permalink)+'">'+esc(p.title)+'</a></li>'}).join(''):'<li class="none">'+esc(i.dataset.none)+'</li>';u.hidden=false})}
+i.addEventListener('focus',load,{once:true});i.addEventListener('input',function(){clearTimeout(t);t=setTimeout(run,120)});
+i.addEventListener('keydown',function(e){if(e.key==='Enter'){var a=u.querySelector('a');if(a)location.href=a.href}});
+document.addEventListener('click',function(e){if(!f.contains(e.target))u.hidden=true})})();
+</script>

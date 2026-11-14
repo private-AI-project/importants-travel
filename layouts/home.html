@@ -1,0 +1,95 @@
+{{- /* 공통 디자인(shared-design) 첫 화면. 블로그마다 data/dz.yaml 의 layout(A·B·C)과 variant(a2·c2)로 모양이 갈린다.
+       원본은 ~/blog-automation/shared-design/ 이고 sync.py 가 각 블로그로 복사한다. 여기서 고치지 말 것. */ -}}
+{{- define "main" }}
+{{- $d := site.Data.dz }}{{ $L := $d.labels }}
+{{- $posts := where site.RegularPages "Section" "posts" }}
+{{- $tools := where site.RegularPages "Section" "tools" }}
+{{- $cats := site.Taxonomies.categories.ByCount }}
+{{- $desc := site.Params.description }}
+{{- $parts := split $desc ". " }}
+{{- $h1 := strings.TrimSuffix "." (index $parts 0) }}
+{{- $sub := delimit (after 1 $parts) ". " }}
+{{- $pop := slice }}
+{{- range $d.popular }}{{ with index (where $posts "RelPermalink" .) 0 }}{{ $pop = $pop | append . }}{{ end }}{{ end }}
+{{- range $posts.ByDate.Reverse }}{{ if and (lt (len $pop) 8) (not (in $pop .)) }}{{ $pop = $pop | append . }}{{ end }}{{ end }}
+{{- $recent := first 8 $posts.ByDate.Reverse }}
+
+<div class="dz dz-home dz-{{ $d.layout }} {{ $d.variant }}">
+
+{{- if eq $d.layout "A" }}
+  <section class="dz-hero">
+    <div class="dz-hero-main">
+      <h1>{{ $h1 }}</h1>
+      {{- with $sub }}<p>{{ . }}</p>{{ end }}
+      {{ partial "dz/search.html" . }}
+      <div class="dz-chips">{{ range first 4 $cats }}<a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>{{ end }}</div>
+    </div>
+    {{- if eq $d.variant "a2" }}
+    <div class="dz-tools dz-tools-side">{{ range $tools }}{{ partial "dz/tool_tile.html" (dict "p" . "L" $L) }}{{ end }}</div>
+    {{- end }}
+  </section>
+  <section class="dz-sec"><h2>{{ $L.topics }}</h2>
+    <div class="dz-topics">{{ range first 5 $cats }}<a class="dz-topic" href="{{ .Page.RelPermalink }}"><i></i><b>{{ .Page.Title }}</b><span>{{ printf $L.post_count .Count }}</span></a>{{ end }}</div>
+  </section>
+  {{- if ne $d.variant "a2" }}
+  <section class="dz-sec"><h2>{{ $L.tools }}</h2>
+    <div class="dz-tools">{{ range $tools }}{{ partial "dz/tool_tile.html" (dict "p" . "L" $L) }}{{ end }}</div>
+  </section>
+  {{- end }}
+  <section class="dz-sec"><h2>{{ $L.popular }}</h2>{{ partial "dz/rows.html" (dict "pages" $pop "num" true) }}</section>
+  <section class="dz-sec"><h2>{{ $L.recent }}</h2>{{ partial "dz/rows.html" (dict "pages" $recent "num" false) }}
+    <a class="dz-more" href="{{ "posts/" | relURL }}">{{ $L.all_posts }} →</a></section>
+
+{{- else if eq $d.layout "B" }}
+  <section class="dz-hero dz-band">
+    <h1>{{ $h1 }}</h1>
+    {{- with $sub }}<p>{{ . }}</p>{{ end }}
+    {{ partial "dz/search.html" . }}
+  </section>
+  <div class="dz-pull">
+    <div class="dz-cards">{{ range first 3 $pop }}
+      <a class="dz-card" href="{{ .RelPermalink }}"><div class="dz-sc"><small>{{ with .Params.categories }}{{ index . 0 }}{{ end }}</small><i></i></div><b>{{ .Title }}</b></a>{{ end }}
+    </div>
+    <section class="dz-sec"><h2>{{ $L.topics }}</h2>
+      <div class="dz-chiprow">{{ range $cats }}<a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<em>{{ .Count }}</em></a>{{ end }}</div>
+    </section>
+    <section class="dz-sec"><h2>{{ $L.tools }}</h2>
+      <div class="dz-tools">{{ range $tools }}{{ partial "dz/tool_tile.html" (dict "p" . "L" $L) }}{{ end }}</div>
+    </section>
+    <section class="dz-sec"><h2>{{ $L.popular }}</h2>{{ partial "dz/rows.html" (dict "pages" (after 3 $pop) "num" false) }}</section>
+    <section class="dz-sec"><h2>{{ $L.recent }}</h2>{{ partial "dz/rows.html" (dict "pages" $recent "num" false) }}
+      <a class="dz-more" href="{{ "posts/" | relURL }}">{{ $L.all_posts }} →</a></section>
+  </div>
+
+{{- else }}{{/* C */}}
+  <section class="dz-hero">
+    <div>
+      <h1>{{ $h1 }}</h1>
+      {{- with $sub }}<p>{{ . }}</p>{{ end }}
+      {{ partial "dz/search.html" . }}
+    </div>
+    {{- with index $pop 0 }}
+    <a class="dz-feat" href="{{ .RelPermalink }}"><small>{{ $L.popular }}</small><b>{{ .Title }}</b><p>{{ .Description }}</p></a>
+    {{- end }}
+  </section>
+  <section class="dz-cols">
+    {{- $n := cond (eq $d.variant "c2") 3 5 }}
+    {{- range first $n $cats }}
+    {{- $cname := .Page.Title }}
+    <div class="dz-col"><h3><a href="{{ .Page.RelPermalink }}">{{ $cname }}</a><em>{{ .Count }}</em></h3>
+      {{- $inCat := slice }}
+      {{- range $pop }}{{ if in .Params.categories $cname }}{{ $inCat = $inCat | append . }}{{ end }}{{ end }}
+      {{- range .Pages.ByDate.Reverse }}{{ if and (lt (len $inCat) 3) (not (in $inCat .)) }}{{ $inCat = $inCat | append . }}{{ end }}{{ end }}
+      {{- range first 3 $inCat }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}
+    </div>
+    {{- end }}
+  </section>
+  <section class="dz-sec"><h2>{{ $L.tools }}</h2>
+    <div class="dz-tools">{{ range $tools }}{{ partial "dz/tool_tile.html" (dict "p" . "L" $L) }}{{ end }}</div>
+  </section>
+  <section class="dz-sec"><h2>{{ $L.recent }}</h2>{{ partial "dz/rows.html" (dict "pages" $recent "num" false) }}
+    <a class="dz-more" href="{{ "posts/" | relURL }}">{{ $L.all_posts }} →</a></section>
+{{- end }}
+
+</div>
+{{- end }}

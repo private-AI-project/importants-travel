@@ -1,0 +1,11 @@
+{{- /* 글 머리 띠: 최종 확인일(front matter verified > lastmod > date) · 출처 기관. git 날짜는 얕은 체크아웃이라 쓰지 않는다. */ -}}
+{{- $L := site.Data.dz.labels }}
+{{- $v := .Params.verified | default .Params.lastmod | default .Date }}
+<div class="dz-trust">
+  <span>{{ $L.verified }} <b>{{ time.Format "2006.01.02" $v }}</b></span>
+  {{- with .Params.sourceUrl }}
+  {{- $host := replaceRE `^www\.` "" (urls.Parse .).Host }}
+  <span>{{ $L.source }} <a href="{{ . }}" target="_blank" rel="noopener nofollow"><b>{{ index site.Data.dz.orgs $host | default $host }}</b></a></span>
+  {{- end }}
+  <span class="dz-meta">{{ partial "post_meta.html" . }}</span>
+</div>
