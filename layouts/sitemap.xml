@@ -1,7 +1,7 @@
 {{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {{- range where .Data.Pages "Section" "ne" "tags" }}
-  {{- if .Permalink }}
+  {{- if and .Permalink (ne .Params.robotsNoIndex true) }}{{- /* 검색 제외(robotsNoIndex) 글은 사이트맵에서도 뺀다 */}}
   <url>
     <loc>{{ .Permalink }}</loc>
     {{- if not .Lastmod.IsZero }}
