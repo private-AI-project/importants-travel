@@ -32,6 +32,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          # 사이트맵 lastmod 가 git 날짜를 쓴다(enableGitInfo). 얕은 체크아웃이면 전부 배포일이 된다.
+          fetch-depth: 0
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
