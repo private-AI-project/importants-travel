@@ -1,2 +1,2 @@
 {{- $p := .p }}{{ $L := .L }}
-<a class="dz-tool" href="{{ $p.RelPermalink }}"><i></i><b>{{ index (split (index (split $p.Title ":") 0) "(") 0 | strings.TrimSpace }}</b><span>{{ $L.tool_go }} →</span></a>
+<a class="dz-tool" href="{{ $p.RelPermalink }}">{{ partial "dz/icon.html" "_tool" }}<b>{{ index (split (index (split $p.Title ":") 0) "(") 0 | strings.TrimSpace }}</b><span>{{ $L.tool_go }} →</span></a>

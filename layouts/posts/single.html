@@ -17,16 +17,30 @@
   </header>
   <div class="dz-grid">
     <div class="dz-body">
-      {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
-      {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
       {{- if $hasToc }}
       <details class="dz-mtoc"{{ if eq $d.variant "c2" }} open{{ end }}><summary>{{ $L.toc }}</summary>{{ $toc | safeHTML }}</details>
       {{- end }}
       {{- with .Params.keypoints }}
       <div class="dz-key"><h3>{{ $L.keypoints }}</h3><ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul></div>
       {{- end }}
+      {{- /* 표지는 요약 아래, 높이를 줄여서. 휴대폰 첫 화면에 제목·요약이 먼저 보이게. */}}
+      {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+      {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
       <div class="post-content md-content">{{ $content | safeHTML }}</div>
       {{- partial "extend_post_content.html" . }}
+      {{- $rel := where (site.RegularPages.Related .) "Section" "posts" }}
+      {{- $cat := index (.Params.categories | default (slice "")) 0 }}
+      {{- range (where (where site.RegularPages "Section" "posts") "Params.categories" "intersect" (slice $cat)).ByDate.Reverse }}{{ if and (lt (len $rel) 4) (ne .Permalink $.Permalink) (not (in $rel .)) }}{{ $rel = $rel | append . }}{{ end }}{{ end }}
+      {{- with first 4 $rel }}
+      <section class="dz-related"><h2>{{ $L.related }}</h2>
+        <div class="dz-relgrid">{{ range . }}<a href="{{ .RelPermalink }}"><small>{{ with .Params.categories }}{{ index . 0 }}{{ end }}</small><b>{{ .Title }}</b></a>{{ end }}</div>
+      </section>
+      {{- end }}
+      <section class="dz-author">
+        <h2>{{ $L.author_title }}</h2>
+        <p>{{ $L.author_line }}</p>
+        <div>{{ with site.GetPage "/about" }}<a href="{{ .RelPermalink }}">{{ $L.about_link }} →</a>{{ end }}{{ with site.GetPage "/contact" }}<a href="{{ .RelPermalink }}">{{ $L.report_link }} →</a>{{ end }}</div>
+      </section>
     </div>
     <aside class="dz-aside">
       {{- if and $hasToc (ne $d.variant "c2") }}

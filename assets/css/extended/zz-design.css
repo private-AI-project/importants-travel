@@ -32,7 +32,7 @@
 /* 도구 */
 .dz-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .dz-tool{display:flex;flex-direction:column;justify-content:space-between;gap:14px;min-height:118px;padding:22px;border-radius:16px;background:var(--acs);color:var(--primary)}
-.dz-tool i{display:none}
+.dz-tool .dz-ic{display:none}
 .dz-tool b{font-size:17px;line-height:1.4}
 .dz-tool span{font-size:14px;font-weight:700;color:var(--act)}
 /* 글 화면 공통 */
@@ -95,6 +95,51 @@
 }
 /* PaperMod 는 목록 페이지(body.list) 바탕을 회색으로 칠한다. 새 첫 화면은 모양별 바탕을 쓴다. */
 body.list:has(.dz){background:var(--theme)}
+
+/* ===== 1단계 보강 ===== */
+/* 머리글: 주제 4개 + 도구 + 검색. 휴대폰은 한 줄 가로 스크롤 */
+.dz-menu{align-items:center}
+.dz-search-li a{display:flex;align-items:center;color:var(--secondary)}
+@media (max-width:760px){
+  .header-nav{flex-wrap:nowrap;gap:12px}
+  .header-nav .logo{flex:none;flex-wrap:nowrap}
+  .dz-menu{flex:1;min-width:0}
+  .dz-menu li:first-child{margin-left:auto}
+  .dz-menu{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  .dz-menu::-webkit-scrollbar{display:none}
+  .dz-menu li{flex:none}
+  .dz-menu li+li{margin-left:2px}
+  #menu.dz-menu a{font-size:14.5px;padding:0 6px}
+}
+.dz-footnav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin-bottom:10px}
+.dz-footnav a{color:var(--secondary);font-size:13.5px}
+/* 아이콘 */
+.dz-ic{display:inline-flex;align-items:center;justify-content:center;color:var(--act)}
+.dz-topic .dz-ic{width:42px;height:42px;margin-bottom:18px;border-radius:12px;background:var(--acs)}
+.dz-chiprow a{display:inline-flex;align-items:center;gap:7px}
+.dz-chiprow .dz-ic svg{width:17px;height:17px}
+.dz-col h3 a{display:inline-flex;align-items:center;gap:7px}
+.dz-col .dz-ic svg{width:18px;height:18px}
+/* 표지: 요약 아래, 낮게 */
+.dz-post .entry-cover{margin:0 0 28px}
+.dz-post .entry-cover img{width:100%;max-height:340px;object-fit:cover;border-radius:14px}
+/* 함께 읽을 글 · 작성 원칙 */
+.dz-related{margin:44px 0 0;padding-top:28px;border-top:1px solid var(--border)}
+.dz-related h2,.dz-author h2{margin:0 0 14px;font-size:20px;font-weight:800}
+.dz-relgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dz-relgrid a{display:block;padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:var(--entry);color:var(--primary);text-decoration:none;box-shadow:none}
+.dz-relgrid a:hover{border-color:var(--ac)}
+.dz-relgrid small{display:block;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--act)}
+.dz-relgrid b{font-size:15.5px;font-weight:600;line-height:1.5}
+.dz-author{margin:28px 0 8px;padding:20px 22px;border-radius:16px;background:var(--dzsoft)}
+.dz-author h2{font-size:15px;color:var(--secondary)}
+.dz-author p{margin:0;font-size:15.5px;line-height:1.7;color:var(--content)}
+.dz-author div{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:12px}
+.dz-author a{font-size:14.5px;font-weight:700;color:var(--act);text-decoration:none;box-shadow:none}
+@media (max-width:760px){
+  .dz-post .entry-cover img{max-height:190px}
+  .dz-relgrid{grid-template-columns:1fr}
+}
 /* ===== B 카드: 짙은 머리띠 + 위로 겹친 카드, 흰 종이 본문 ===== */
 :root{--theme:#f3f5f8}
 [data-theme="dark"]{--band:#11141a}
@@ -110,16 +155,17 @@ body.list:has(.dz){background:var(--theme)}
 .dz-pull{margin-top:-58px;position:relative}
 .dz-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .dz-card{display:block;overflow:hidden;border-radius:18px;background:var(--entry);box-shadow:0 1px 2px rgba(16,24,40,.06);color:var(--primary)}
-.dz-sc{display:flex;flex-direction:column;justify-content:space-between;height:96px;padding:18px 20px;background:var(--acs)}
-.dz-sc small{font-size:13px;font-weight:700;color:var(--act)}
-.dz-sc i{width:44px;height:6px;border-radius:3px;background:var(--ac)}
-.dz-card b{display:block;padding:16px 20px 20px;font-size:16.5px;font-weight:700;line-height:1.5}
+.dz-sc{display:flex;align-items:center;gap:10px;padding:18px 20px 0}
+.dz-sc .dz-ic{width:36px;height:36px;border-radius:10px;background:var(--acs)}
+.dz-sc .dz-ic svg{width:19px;height:19px}
+.dz-sc small{font-size:13.5px;font-weight:700;color:var(--act)}
+.dz-card b{display:block;padding:12px 20px 22px;font-size:16.5px;font-weight:700;line-height:1.5}
 .dz-card:hover b{color:var(--act)}
 .dz-chiprow{display:flex;flex-wrap:wrap;gap:10px}
 .dz-chiprow a{padding:11px 16px;border:1px solid var(--border);border-radius:12px;background:var(--entry);font-size:15px;font-weight:600;color:var(--primary)}
 .dz-chiprow em{margin-left:6px;font-style:normal;font-weight:400;color:var(--secondary)}
 .dz-B .dz-tool{background:var(--entry);flex-direction:row;align-items:center;min-height:0}
-.dz-B .dz-tool i{display:block;flex:none;width:44px;height:44px;border-radius:12px;background:var(--ac)}
+.dz-B .dz-tool .dz-ic{display:inline-flex;flex:none;width:44px;height:44px;border-radius:12px;background:var(--ac);color:var(--onac)}
 .dz-B .dz-tool b{flex:1}
 .dz-B .dz-rows{background:var(--entry);border-radius:18px;padding:4px 22px}
 .dz-B .dz-row:last-child{border-bottom:0}
@@ -145,7 +191,6 @@ body.list:has(.dz){background:var(--theme)}
   .dz-band h1{font-size:28px}
   .dz-band p{font-size:15px}
   .dz-cards{grid-template-columns:1fr;gap:12px}
-  .dz-sc{height:auto;gap:10px}
   .dz-B .dz-ph{padding-top:20px;padding-bottom:62px}
   .dz-B .dz-body{padding:24px 18px;border-radius:16px}
   .dz-B .dz-rows{padding:2px 16px}

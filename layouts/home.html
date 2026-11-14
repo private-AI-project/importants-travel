@@ -29,7 +29,7 @@
     {{- end }}
   </section>
   <section class="dz-sec"><h2>{{ $L.topics }}</h2>
-    <div class="dz-topics">{{ range first 5 $cats }}<a class="dz-topic" href="{{ .Page.RelPermalink }}"><i></i><b>{{ .Page.Title }}</b><span>{{ printf $L.post_count .Count }}</span></a>{{ end }}</div>
+    <div class="dz-topics">{{ range first 5 $cats }}<a class="dz-topic" href="{{ .Page.RelPermalink }}">{{ partial "dz/icon.html" .Page.Title }}<b>{{ .Page.Title }}</b><span>{{ printf $L.post_count .Count }}</span></a>{{ end }}</div>
   </section>
   {{- if ne $d.variant "a2" }}
   <section class="dz-sec"><h2>{{ $L.tools }}</h2>
@@ -48,10 +48,10 @@
   </section>
   <div class="dz-pull">
     <div class="dz-cards">{{ range first 3 $pop }}
-      <a class="dz-card" href="{{ .RelPermalink }}"><div class="dz-sc"><small>{{ with .Params.categories }}{{ index . 0 }}{{ end }}</small><i></i></div><b>{{ .Title }}</b></a>{{ end }}
+      <a class="dz-card" href="{{ .RelPermalink }}">{{ $c := index (.Params.categories | default (slice "")) 0 }}<div class="dz-sc">{{ partial "dz/icon.html" $c }}<small>{{ $c }}</small></div><b>{{ .Title }}</b></a>{{ end }}
     </div>
     <section class="dz-sec"><h2>{{ $L.topics }}</h2>
-      <div class="dz-chiprow">{{ range $cats }}<a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<em>{{ .Count }}</em></a>{{ end }}</div>
+      <div class="dz-chiprow">{{ range $cats }}<a href="{{ .Page.RelPermalink }}">{{ partial "dz/icon.html" .Page.Title }}{{ .Page.Title }}<em>{{ .Count }}</em></a>{{ end }}</div>
     </section>
     <section class="dz-sec"><h2>{{ $L.tools }}</h2>
       <div class="dz-tools">{{ range $tools }}{{ partial "dz/tool_tile.html" (dict "p" . "L" $L) }}{{ end }}</div>
@@ -76,7 +76,7 @@
     {{- $n := cond (eq $d.variant "c2") 3 5 }}
     {{- range first $n $cats }}
     {{- $cname := .Page.Title }}
-    <div class="dz-col"><h3><a href="{{ .Page.RelPermalink }}">{{ $cname }}</a><em>{{ .Count }}</em></h3>
+    <div class="dz-col"><h3><a href="{{ .Page.RelPermalink }}">{{ partial "dz/icon.html" $cname }}{{ $cname }}</a><em>{{ .Count }}</em></h3>
       {{- $inCat := slice }}
       {{- range $pop }}{{ if in .Params.categories $cname }}{{ $inCat = $inCat | append . }}{{ end }}{{ end }}
       {{- range .Pages.ByDate.Reverse }}{{ if and (lt (len $inCat) 3) (not (in $inCat .)) }}{{ $inCat = $inCat | append . }}{{ end }}{{ end }}
